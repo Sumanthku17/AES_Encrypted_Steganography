@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>encryption</title>
+  </head>
+
+  <body style="background-color: #121212">
+    <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#Navbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="./index.html"
+          ><img src="img/aes.png" style="max-block-size: 3rem"
+        /></a>
+        <div class="collapse navbar-collapse" id="Navbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+              <a class="nav-link" href="./index.html"
+                ><span class="fa fa-home fa-lg"></span> Home</a
+              >
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#"
+                ><span class="fa fa-object-ungroup fa-lg"></span> Encrypt</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./decrypt.html"
+                ><span class="fa fa-object-group fa-lg"></span> Decrypt</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="jumbotron">
+        <div class="container">
+          <div class="row row-header">
+            <div class="col-12 col-md-6">
+              <h1>AES Encryption with Image Steganography</h1>
+              <p style="padding-top: 30px">
+                The Advanced Encryption Standard (AES), also known by its original name Rijndael, is a specification for the encryption of electronic data established by the U.S. National Institute of Standards and Technology (NIST) in 2001.
+                AES is a subset of the Rijndael block cipher developed by two Belgian cryptographers, Vincent Rijmen and Joan Daemen.
+                AES is based on a design principle known as a
+                substitution–permutation network, and is efficient in both
+                software and hardware. Unlike its predecessor DES, AES does not
+                use a Feistel network. AES is a variant of Rijndael, with a fixed
+                block size of 128 bits, and a key size of 128, 192, or 256 bits.
+              </p>
+            </div>
+            <div class="col-12 col-md-6 align-items-center">
+              <img src="img/aes.png" class="img-fluid" />
+            </div>
+          </div>
+          <div class="row ">
+          
+            <div class=" col-12 col-md-2" style="padding-left: 15px; padding-top: 15px;">
+              <a href="#toEncrypt">
+                <input class="btn btn-info" type="button" value="What all you need to Encrypt?" />
+              </a>
+            </div>
+            
+          </div>
+          
+        </div>
+      </header>
+
+    <div class="container">
+      <div class="row col-12 col-sm">
+        <div>
+          <ol class="col-12 breadcrumb">
+            <li class="breadcrumb-item"><a href="./index.html">Home</a></li>
+            <li class="breadcrumb-item active">Encrypt</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="row col-12 col-sm">
+        <div
+        class="align-items-center cards"
+        id="toEncrypt"
+        style="color: white; padding: 1vmax;"
+      >
+        <div class="text-center p-3">
+          <h3 style="font-family: Trebuchet MS; font-size: 4vmax">
+            <b>What all we need for an Encryption?</b>
+          </h3>
+        </div>
+        
+
+        <div class="col-6 align-items-center">
+            <ul>
+                <li >Image to embed message</li>
+                <li >Message to be Encrypted </li>
+                <li >Secret Key</li>
+              </ul>
+          
+        </div>
+      </div>
+      </div>
+      <!-- <input type="file"  accept="image/gif, image/jpeg, image/png" name="image" id="file" style="display: none;">
+      <label for="file">
+        <i class="fa fa-picture-o" aria-hidden="true"></i> Choose a photo
+      </label>
+
+      <textarea id="message" class="message" maxlength="1000" placeholder="Type hidden message" style="margin: 0px; width: 250px; height: 45px;"></textarea>
+      
+      <input type="password" id="password" class="password" placeholder="Password (optional)">
+      <button id="encode" class="submit">Hide message</button> -->
+      
+      <br>
+      <br>
+      
+      <div id='main' class='section dark'>
+          <div class='step'>Choose an image</div>
+          <img id='preview' class='preview hide' />
+          <div class='sectionbody'>
+              <input type='file' id='file' />
+          </div>
+      </div>
+      <div id='choose' class='section dark hide'>
+          <div class='step'>Start your encryption!</div>
+          <div class='sectionbody'>
+              <div class='left'>
+                  <textarea id='message' class='message' maxlength='1000'
+                      placeholder='Type hidden message'></textarea>
+                  <input type='password' id='password' class='password'
+                      placeholder='Password' />
+                  <button id='encode' class='submit'>Hide message</button>
+              </div>
+              <div class='right'>
+                  <input type="hidden" id='password2' class='password'
+                      placeholder='Password' />
+                  
+              </div> 
+          </div>
+      </div>
+      <div id='reveal' class='section dark hide'>
+          <div class='step'>Hidden message</div>
+          <div id='messageDecoded' class='sectionbody'></div>
+      </div>
+      <canvas id='canvas' class='hide'></canvas>
+      <img id='output' />
+      </div>
+      
+
+
+      <footer class="footer">
+        <div class="container">
+          <div class="row">
+              <div class="col-4 offset-1 col-sm-2">
+                <h5 style="color: white;">Links</h5>
+                <ul class="list-unstyled" >
+                  <li><a href="./index.html">Home</a></li>
+                  <li><a href="./encrypt.html">Encrypt</a></li>
+                  <li><a href="#">Decrypt</a></li>
+                </ul>
+              </div>
+            <div class="col-7 col-sm-5" style="color : white">
+              <h5>Our Address</h5>
+              <address>
+                  Dr. Vishnuvardhana Road Post,<br />  
+                  Channasandra, RR Nagar,<br />
+                  Bengaluru, Karnataka 560098<br />
+                <i class="fa fa-phone fa-lg"></i>: +852 1234 5678<br />
+                <i class="fa fa-fax fa-lg"></i>: +852 8765 4321<br />
+                <i class="fa fa-envelope fa-lg"></i>:
+                <a href="mailto:confusion@food.net">confusion@food.net</a>
+              </address>
+            </div>
+            <div class="col-12 col-sm-4 align-self-center">
+              <div class="text-center">
+                <a
+                  class="btn btn-social-icon btn-google"
+                  href="http://google.com/+"
+                  ><i class="fa fa-google-plus fa-lg"></i
+                ></a>
+                <a
+                  class="btn btn-social-icon btn-facebook"
+                  href="http://www.facebook.com/profile.php?id="
+                  ><i class="fa fa-facebook fa-lg"></i
+                ></a>
+                <a
+                  class="btn btn-social-icon btn-linkedin"
+                  href="http://www.linkedin.com/in/"
+                  ><i class="fa fa-linkedin fa-lg"></i
+                ></a>
+                <a
+                  class="btn btn-social-icon btn-twitter"
+                  href="http://twitter.com/"
+                  ><i class="fa fa-twitter fa-lg"></i
+                ></a>
+                <a
+                  class="btn btn-social-icon btn-google"
+                  href="http://youtube.com/"
+                  ><i class="fa fa-youtube fa-lg"></i
+                ></a>
+                <a class="btn btn-social-icon" href="mailto:"
+                  ><i class="fa fa-envelope-o fa-lg"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+              <div class="col-auto">
+                <p style="color: whitesmoke;">© Copyright 2020 RNS Bois</p>
+              </div>
+            </div>
+        </div>
+      </footer>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+
+    <script src='sjcl.js' type='text/javascript'></script>
+    <script src='main.js' type='text/javascript'></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
